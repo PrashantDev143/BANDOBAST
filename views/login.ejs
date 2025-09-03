@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - E-BANDOBAST</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/auth.css">
+    
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#1E3A8A">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <!-- Left Side - Branding -->
+                <div class="col-lg-6 d-none d-lg-flex auth-brand">
+                    <div class="brand-content">
+                        <div class="logo-section text-center mb-4">
+                            <i class="bi bi-shield-check brand-icon"></i>
+                            <h1 class="brand-title">E-BANDOBAST</h1>
+                            <p class="brand-subtitle">Police Deployment Tracking System</p>
+                        </div>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Real-time Officer Tracking</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-graph-up"></i>
+                                <span>Performance Analytics</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-bell-fill"></i>
+                                <span>Smart Notifications</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-clipboard-data"></i>
+                                <span>Automated Reports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Login Form -->
+                <div class="col-lg-6 d-flex align-items-center">
+                    <div class="auth-form-container w-100">
+                        <div class="text-center mb-4 d-lg-none">
+                            <i class="bi bi-shield-check text-primary" style="font-size: 3rem;"></i>
+                            <h2 class="fw-bold text-primary">E-BANDOBAST</h2>
+                        </div>
+                        
+                        <div class="auth-form">
+                            <div class="text-center mb-4">
+                                <h3 class="fw-bold text-dark">Welcome Back</h3>
+                                <p class="text-muted">Sign in to your account</p>
+                            </div>
+                            
+                            <div class="alert alert-danger d-none" id="errorAlert">
+                                <i class="bi bi-exclamation-circle me-2"></i>
+                                <span id="errorMessage"></span>
+                            </div>
+                            
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </span>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        Remember me
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary w-100 mb-3" id="loginBtn">
+                                    <span class="btn-text">Sign In</span>
+                                    <span class="btn-loading d-none">
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                        Signing in...
+                                    </span>
+                                </button>
+                            </form>
+                            
+                            <div class="text-center">
+                                <p class="mb-0">Don't have an account? 
+                                    <a href="#" id="showSignup" class="text-primary fw-semibold">Sign up</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Signup Form (Hidden by default) -->
+                        <div class="auth-form d-none" id="signupForm">
+                            <div class="text-center mb-4">
+                                <h3 class="fw-bold text-dark">Create Account</h3>
+                                <p class="text-muted">Join the E-BANDOBAST system</p>
+                            </div>
+                            
+                            <form id="signupFormElement">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signupName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="signupName" name="name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="signupRole" class="form-label">Role</label>
+                                        <select class="form-select" id="signupRole" name="role" required>
+                                            <option value="">Select Role</option>
+                                            <option value="officer">Police Officer</option>
+                                            <option value="supervisor">Supervisor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="signupEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="signupEmail" name="email" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="signupPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="signupPhone" name="phone" required>
+                                </div>
+                                
+                                <div class="mb-3" id="badgeNumberField">
+                                    <label for="badgeNumber" class="form-label">Badge Number</label>
+                                    <input type="text" class="form-control" id="badgeNumber" name="badgeNumber">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="signupPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="signupPassword" name="password" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary w-100 mb-3" id="signupBtn">
+                                    <span class="btn-text">Create Account</span>
+                                    <span class="btn-loading d-none">
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                        Creating account...
+                                    </span>
+                                </button>
+                            </form>
+                            
+                            <div class="text-center">
+                                <p class="mb-0">Already have an account? 
+                                    <a href="#" id="showLogin" class="text-primary fw-semibold">Sign in</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Supabase JS -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

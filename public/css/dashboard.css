@@ -1,0 +1,241 @@
+:root {
+  --primary-blue: #1E3A8A;
+  --secondary-blue: #3B82F6;
+  --accent-blue: #60A5FA;
+  --success-green: #10B981;
+  --warning-orange: #F59E0B;
+  --danger-red: #EF4444;
+  --info-cyan: #06B6D4;
+  --light-gray: #F8FAFC;
+  --medium-gray: #64748B;
+  --dark-gray: #1E293B;
+}
+
+body {
+  background-color: var(--light-gray);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+/* Stat Cards */
+.stat-card {
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary-blue), var(--accent-blue));
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stat-primary::before {
+  background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+}
+
+.stat-success::before {
+  background: linear-gradient(90deg, var(--success-green), #34D399);
+}
+
+.stat-warning::before {
+  background: linear-gradient(90deg, var(--warning-orange), #FBBF24);
+}
+
+.stat-info::before {
+  background: linear-gradient(90deg, var(--info-cyan), #22D3EE);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.6;
+}
+
+/* Action Buttons */
+.action-btn {
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  border: none;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  border-color: var(--primary-blue);
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 12px 12px 0 0 !important;
+  padding: 1rem 1.5rem;
+}
+
+/* Table */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  border-top: none;
+  border-bottom: 2px solid #e2e8f0;
+  font-weight: 600;
+  color: var(--dark-gray);
+  padding: 1rem;
+}
+
+.table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8fafc;
+  transform: scale(1.01);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Status indicators */
+.status-upcoming {
+  background-color: var(--info-cyan);
+}
+
+.status-active {
+  background-color: var(--success-green);
+}
+
+.status-completed {
+  background-color: var(--medium-gray);
+}
+
+.status-cancelled {
+  background-color: var(--danger-red);
+}
+
+/* Priority indicators */
+.priority-low {
+  color: var(--success-green);
+}
+
+.priority-medium {
+  color: var(--warning-orange);
+}
+
+.priority-high {
+  color: var(--danger-red);
+}
+
+.priority-critical {
+  color: var(--danger-red);
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .action-btn {
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-header {
+    padding: 1rem;
+  }
+  
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading animations */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Modal enhancements */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-footer {
+  border-top: 1px solid #e2e8f0;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

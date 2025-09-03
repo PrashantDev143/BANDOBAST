@@ -1,0 +1,208 @@
+:root {
+  --primary-blue: #1E3A8A;
+  --secondary-blue: #3B82F6;
+  --success-green: #10B981;
+  --warning-orange: #F59E0B;
+  --danger-red: #EF4444;
+  --light-gray: #F8FAFC;
+  --medium-gray: #64748B;
+}
+
+body {
+  background-color: var(--light-gray);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Event Header */
+.event-header {
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: white;
+}
+
+.event-meta {
+  margin-top: 0.5rem;
+}
+
+/* Officers Panel */
+.officers-panel {
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+}
+
+.officers-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.officer-item {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.officer-item:hover {
+  background-color: var(--light-gray);
+  transform: translateX(5px);
+}
+
+.officer-status {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.status-active { background-color: var(--success-green); }
+.status-idle { background-color: var(--warning-orange); animation: blink 1s infinite; }
+.status-out-of-zone { background-color: var(--danger-red); animation: blink 1s infinite; }
+.status-assigned { background-color: var(--medium-gray); }
+
+/* Map Container */
+.map-container {
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+}
+
+.event-map {
+  height: 500px;
+  border-radius: 0 0 12px 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
+.map-placeholder i {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+/* Activity Feed */
+.activity-feed {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  align-items: start;
+  padding: 0.75rem;
+  border-left: 4px solid transparent;
+  margin-bottom: 0.5rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+  background-color: var(--light-gray);
+  border-left-color: var(--secondary-blue);
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.activity-info { background: var(--secondary-blue); }
+.activity-warning { background: var(--warning-orange); }
+.activity-danger { background: var(--danger-red); }
+.activity-success { background: var(--success-green); }
+
+/* Alert Styles */
+.alert-item {
+  border-left: 4px solid var(--danger-red);
+  background: #FEF2F2;
+  animation: slideIn 0.5s ease;
+}
+
+.alert-warning {
+  border-left-color: var(--warning-orange);
+  background: #FFFBEB;
+}
+
+.alert-success {
+  border-left-color: var(--success-green);
+  background: #F0FDF4;
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .officers-panel, .map-container {
+    height: 400px;
+    margin-bottom: 1rem;
+  }
+  
+  .event-map {
+    height: 300px;
+  }
+  
+  .officers-list {
+    max-height: 300px;
+  }
+  
+  .officer-item {
+    padding: 0.75rem;
+  }
+  
+  .activity-item {
+    padding: 0.5rem;
+  }
+  
+  .activity-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Button Groups */
+.btn-check:checked + .btn-outline-primary {
+  background-color: var(--secondary-blue);
+  border-color: var(--secondary-blue);
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - E-BANDOBAST</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-container {
+            text-align: center;
+            color: white;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .error-icon {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .error-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-home {
+            background: white;
+            color: #1E3A8A;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: #1E3A8A;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <i class="bi bi-exclamation-triangle error-icon"></i>
+        <h1 class="error-title">404</h1>
+        <p class="error-message">
+            The page you're looking for doesn't exist or you don't have permission to access it.
+        </p>
+        <div>
+            <a href="/" class="btn btn-home">
+                <i class="bi bi-house me-2"></i>
+                Return to Home
+            </a>
+        </div>
+        <div class="mt-4">
+            <p class="small opacity-75">
+                If you believe this is an error, please contact your system administrator.
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+:root {
+  --primary-blue: #1E3A8A;
+  --secondary-blue: #3B82F6;
+  --accent-blue: #60A5FA;
+  --success-green: #10B981;
+  --warning-orange: #F59E0B;
+  --danger-red: #EF4444;
+  --light-gray: #F8FAFC;
+  --medium-gray: #64748B;
+  --dark-gray: #1E293B;
+}
+
+body {
+  background-color: var(--light-gray);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Status Banner */
+.status-banner {
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.status-indicator .badge {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+/* Event Card */
+.event-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.event-info p {
+  margin-bottom: 0.5rem;
+}
+
+.event-info i {
+  width: 20px;
+}
+
+/* Duty Status Timeline */
+.duty-status {
+  background: var(--light-gray);
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.status-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.status-step {
+  position: relative;
+  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.status-step::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--medium-gray);
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--medium-gray);
+}
+
+.status-step.completed::before {
+  background: var(--success-green);
+  box-shadow: 0 0 0 2px var(--success-green);
+}
+
+.status-step.active::before {
+  background: var(--secondary-blue);
+  box-shadow: 0 0 0 2px var(--secondary-blue);
+  animation: pulse 2s infinite;
+}
+
+.status-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: -1.4rem;
+  top: calc(50% + 6px);
+  width: 2px;
+  height: calc(100% + 0.75rem);
+  background: #e2e8f0;
+}
+
+.status-step.completed:not(:last-child)::after {
+  background: var(--success-green);
+}
+
+/* Action Buttons */
+.action-btn {
+  border-radius: 10px;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.action-btn:hover::before {
+  left: 100%;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Location Card */
+.location-card {
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--success-green), #34D399);
+  color: white;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  animation: pulse 2s infinite;
+}
+
+/* Emergency Button */
+.emergency-card {
+  border: 2px solid var(--danger-red);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FEF2F2, #FECACA);
+}
+
+.emergency-btn {
+  background: linear-gradient(135deg, var(--danger-red), #DC2626);
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.emergency-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+}
+
+.emergency-btn:active {
+  transform: scale(0.95);
+}
+
+/* Battery Indicator */
+.battery-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.battery-level {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  background: var(--success-green);
+  color: white;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.battery-level.low {
+  background: var(--danger-red);
+  animation: blink 1s infinite;
+}
+
+.battery-level.medium {
+  background: var(--warning-orange);
+}
+
+/* Zone Status */
+#zoneStatus.bg-success {
+  background: var(--success-green) !important;
+}
+
+#zoneStatus.bg-danger {
+  background: var(--danger-red) !important;
+}
+
+#zoneStatus.bg-warning {
+  background: var(--warning-orange) !important;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .action-btn {
+    margin-bottom: 1rem;
+  }
+  
+  .event-card .row {
+    text-align: center;
+  }
+  
+  .duty-status {
+    margin-top: 1rem;
+  }
+  
+  .emergency-btn {
+    padding: 1.5rem;
+    width: 100%;
+  }
+}
+
+/* Loading states */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.btn-loading {
+  pointer-events: none;
+}
+
+/* Form styling */
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--secondary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}

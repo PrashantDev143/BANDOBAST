@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - E-BANDOBAST</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#1E3A8A">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/dashboard">
+                <i class="bi bi-shield-check me-2"></i>
+                E-BANDOBAST
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/holidays">
+                            <i class="bi bi-calendar-check me-1"></i>Holidays
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reports">
+                            <i class="bi bi-file-earmark-bar-graph me-1"></i>Reports
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>
+                            <span id="userName">Supervisor</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <!-- Quick Stats -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-primary">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Active Events</h6>
+                                <h3 class="card-title mb-0" id="activeEvents">0</h3>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="bi bi-calendar-event"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-success">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">On Duty Officers</h6>
+                                <h3 class="card-title mb-0" id="onDutyOfficers">0</h3>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-warning">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Pending Alerts</h6>
+                                <h3 class="card-title mb-0" id="pendingAlerts">0</h3>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card stat-info">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6 class="card-subtitle text-muted">Holiday Requests</h6>
+                                <h3 class="card-title mb-0" id="holidayRequests">0</h3>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="bi bi-calendar-x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Quick Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3 mb-3">
+                                <button class="btn btn-primary w-100 action-btn" data-bs-toggle="modal" data-bs-target="#createEventModal">
+                                    <i class="bi bi-plus-circle me-2"></i>
+                                    Create New Event
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-3">
+                                <button class="btn btn-outline-primary w-100 action-btn" data-bs-toggle="modal" data-bs-target="#uploadOfficersModal">
+                                    <i class="bi bi-upload me-2"></i>
+                                    Upload Officers
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-3">
+                                <button class="btn btn-outline-success w-100 action-btn" id="viewActiveEvents">
+                                    <i class="bi bi-play-circle me-2"></i>
+                                    Monitor Events
+                                </button>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-3">
+                                <button class="btn btn-outline-info w-100 action-btn" onclick="location.href='/reports'">
+                                    <i class="bi bi-graph-up me-2"></i>
+                                    View Reports
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Recent Events</h5>
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="eventFilter" id="filterAll" checked>
+                            <label class="btn btn-outline-primary btn-sm" for="filterAll">All</label>
+                            
+                            <input type="radio" class="btn-check" name="eventFilter" id="filterActive">
+                            <label class="btn btn-outline-primary btn-sm" for="filterActive">Active</label>
+                            
+                            <input type="radio" class="btn-check" name="eventFilter" id="filterUpcoming">
+                            <label class="btn btn-outline-primary btn-sm" for="filterUpcoming">Upcoming</label>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Date & Time</th>
+                                        <th>Location</th>
+                                        <th>Officers</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="eventsTableBody">
+                                    <!-- Events will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Event Modal -->
+    <div class="modal fade" id="createEventModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="createEventForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="eventName" class="form-label">Event Name</label>
+                                <input type="text" class="form-control" id="eventName" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="eventPriority" class="form-label">Priority</label>
+                                <select class="form-select" id="eventPriority" name="priority">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                    <option value="critical">Critical</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="eventDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="eventDescription" name="description" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="eventDate" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="eventDate" name="date" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="startTime" class="form-label">Start Time</label>
+                                <input type="time" class="form-control" id="startTime" name="startTime" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="endTime" class="form-label">End Time</label>
+                                <input type="time" class="form-control" id="endTime" name="endTime" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label for="eventLocation" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="eventLocation" name="locationName" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="requiredOfficers" class="form-label">Required Officers</label>
+                                <input type="number" class="form-control" id="requiredOfficers" name="requiredOfficers" min="1" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="latitude" class="form-label">Latitude</label>
+                                <input type="number" class="form-control" id="latitude" name="latitude" step="any">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="longitude" class="form-label">Longitude</label>
+                                <input type="number" class="form-control" id="longitude" name="longitude" step="any">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="radius" class="form-label">Zone Radius (meters)</label>
+                                <input type="number" class="form-control" id="radius" name="radius" value="100" min="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Officers Modal -->
+    <div class="modal fade" id="uploadOfficersModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Officers List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="uploadOfficersForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="selectEvent" class="form-label">Select Event</label>
+                            <select class="form-select" id="selectEvent" name="eventId" required>
+                                <option value="">Choose an event...</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="officerFile" class="form-label">Excel File</label>
+                            <input type="file" class="form-control" id="officerFile" name="officerList" 
+                                   accept=".xlsx,.xls" required>
+                            <div class="form-text">
+                                Upload an Excel file with columns: Name, Badge Number, Phone, Email
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Excel Format:</strong>
+                            <br>Column A: Officer Name
+                            <br>Column B: Badge Number
+                            <br>Column C: Phone Number
+                            <br>Column D: Email Address
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Upload Officers</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Socket.IO -->
+    <script src="https://unpkg.com/socket.io@4.7.4/client-dist/socket.io.js"></script>
+    <!-- Supabase JS -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

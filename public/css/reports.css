@@ -1,0 +1,67 @@
+:root {
+  --primary-blue: #1E3A8A;
+  --secondary-blue: #3B82F6;
+  --success-green: #10B981;
+  --warning-orange: #F59E0B;
+  --danger-red: #EF4444;
+  --light-gray: #F8FAFC;
+  --medium-gray: #64748B;
+}
+
+body {
+  background-color: var(--light-gray);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.report-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.report-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.report-header {
+  display: flex;
+  justify-content: between;
+  align-items: start;
+}
+
+.report-meta {
+  font-size: 0.9rem;
+  color: var(--medium-gray);
+}
+
+.performance-score {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.score-excellent { color: var(--success-green); }
+.score-good { color: var(--secondary-blue); }
+.score-fair { color: var(--warning-orange); }
+.score-poor { color: var(--danger-red); }
+
+.chart-container {
+  height: 300px;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .report-card {
+    margin-bottom: 1rem;
+  }
+}
